@@ -1,6 +1,6 @@
-define enA 9
-#define in1 6
-#define in2 7
+#define enA D2
+#define in1 D6
+#define in2 D7
 
 const int sampleWindow = 50; // Sample window width in mS (50 mS = 20Hz)
 unsigned int sample;
@@ -42,8 +42,8 @@ void loop() {
       }
    }
    peakToPeak = signalMax - signalMin;  // max - min = peak-peak amplitude
-   double volts = (peakToPeak * 5.0) / 1024;  // convert to volts
-   volts = volts * 200;
+   double volts = (peakToPeak * 1000.0) / 1024;  // convert to volts
+   volts = volts * 2;
    
 
    Serial.println(volts);
@@ -55,12 +55,7 @@ void loop() {
   analogWrite(enA, pwmOutput); // Send PWM signal to L298N Enable pin
 
 
-  if(potValue > 0) {
-    digitalWrite(in1, HIGH);
-    digitalWrite(in2, LOW);
-    
-    delay(20);
-  }
+
   
  //Serial.println(potValue);
  
